@@ -1,8 +1,7 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
+import database from "../db";
 
-const sequelize = new Sequelize('sqlite::memory');
-
-export const Empresa = sequelize.define('Empresa', {
+export const Empresa = database.define('Empresa', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -21,10 +20,5 @@ export const Empresa = sequelize.define('Empresa', {
     nomeRepresentante: DataTypes.STRING,
     emailRepresentante: DataTypes.STRING,
     mensagemEmail: DataTypes.STRING,
-    assuntoEmail: DataTypes.STRING,
-    mensagemSms: DataTypes.STRING,
-    horarioIntegracao: { 
-        type: DataTypes.STRING,
-        allowNull: false
-    },
+    assuntoEmail: DataTypes.STRING
 });

@@ -1,8 +1,7 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
+import database from "../db";
 
-const sequelize = new Sequelize('sqlite::memory');
-
-export const Titulo = sequelize.define('Titulo', {
+export const Titulo = database.define('Titulo', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

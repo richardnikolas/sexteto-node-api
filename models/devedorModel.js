@@ -1,8 +1,7 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
+import database from "../db";
 
-const sequelize = new Sequelize('sqlite::memory');
-
-export const Devedor = sequelize.define('Devedor', {
+export const Devedor = database.define('Devedor', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
