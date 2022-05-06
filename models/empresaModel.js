@@ -1,19 +1,19 @@
-import { DataTypes } from 'sequelize';
-import database from "../db";
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../database/db');
 
-export const Empresa = database.define('Empresa', {
+const Empresa = sequelize.define('empresa', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true    
+        primaryKey: true
     },
-    cpfcnpj: { 
-        type: DataTypes.STRING, 
+    cpfcnpj: {
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
         unique: true
     },
-    nomeEmpresa: { 
+    nomeEmpresa: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -22,3 +22,5 @@ export const Empresa = database.define('Empresa', {
     mensagemEmail: DataTypes.STRING,
     assuntoEmail: DataTypes.STRING
 });
+
+module.exports = Empresa;

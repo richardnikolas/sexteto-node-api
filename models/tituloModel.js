@@ -1,14 +1,14 @@
-import { DataTypes } from 'sequelize';
-import database from "../db";
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../database/db');
 
-export const Titulo = database.define('Titulo', {
+const Titulo = sequelize.define('titulo', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true    
+        primaryKey: true
     },
-    cpfcnpj: { 
-        type: DataTypes.STRING, 
+    cpfcnpj: {
+        type: DataTypes.STRING,
         allowNull: false
     },
     valor: {
@@ -16,7 +16,7 @@ export const Titulo = database.define('Titulo', {
         allowNull: false
     },
     codigoDeBarras: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
         allowNull: false
     },
     dataVencimento: {
@@ -26,3 +26,5 @@ export const Titulo = database.define('Titulo', {
     pago: DataTypes.BOOLEAN,
     dataPagamento: DataTypes.STRING
 });
+
+module.exports = Titulo;
