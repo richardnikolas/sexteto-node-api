@@ -5,8 +5,6 @@ const Titulo = require('../models/tituloModel');
 const getAllTitulos = async (req, res) => {
     const titulos = await Titulo.findAll();
 
-    console.log('titulos', titulos);
-
     if (titulos.length > 0) {
         res.status(200).send(titulos);
     } else {
@@ -14,7 +12,7 @@ const getAllTitulos = async (req, res) => {
     }
 };
 
-const getTitulosPorEmpresa = async (req, res) => {
+const getTitulosPorDevedor = async (req, res) => {
     const { cpfcnpj } = req.params;
 
     const titulos = await Titulo.findAll({
@@ -22,8 +20,6 @@ const getTitulosPorEmpresa = async (req, res) => {
             cpfcnpj: cpfcnpj
         }
     });
-
-    console.log('titulos', titulos);
 
     if (titulos.length > 0) {
         res.status(200).send(titulos);
@@ -36,7 +32,26 @@ const getTitulosPorEmpresa = async (req, res) => {
 
 //* POST *//
 
+const createTitulo = async (req, res) => {
+    const { cpfcnpj, valor, codigoDeBarras, dataVencimento } = req.body;
+
+    try {
+        const newTitulo = await Titulo.create({
+            cpfcnpj,
+            valor,
+            codigoDeBarras,
+            dataVencimento
+        });
+
+        res.status(201).send(newTitulo);
+    } catch (error) {
+        res.status(500).send({ message: 'Algum erro inesperado ocorreu ao tentar criar Titulo' });
+        console.error(error);
+    }
+};
+
 module.exports = {
     getAllTitulos,
-    getTitulosPorEmpresa
+    getTitulosPorDevedor,
+    createTitulo
 };

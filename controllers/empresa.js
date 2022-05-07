@@ -5,8 +5,6 @@ const Empresa = require('../models/empresaModel');
 const getAllEmpresas = async (req, res) => {
     const empresas = await Empresa.findAll();
 
-    console.log('empresas', empresas);
-
     if (empresas.length > 0) {
         res.status(200).send(empresas);
     } else {
@@ -23,8 +21,6 @@ const getEmpresa = async (req, res) => {
         }
     });
 
-    console.log('empresa', empresa);
-
     if (empresa !== null) {
         res.status(200).send(empresa);
     } else {
@@ -34,7 +30,35 @@ const getEmpresa = async (req, res) => {
 
 //* POST *//
 
+const createEmpresa = async (req, res) => {
+    const {
+        cpfcnpj,
+        nomeEmpresa,
+        nomeRepresentante,
+        emailRepresentante,
+        mensagemEmail,
+        assuntoEmail
+    } = req.body;
+
+    try {
+        const newEmpresa = await Empresa.create({
+            cpfcnpj,
+            nomeEmpresa,
+            nomeRepresentante,
+            emailRepresentante,
+            mensagemEmail,
+            assuntoEmail
+        });
+
+        res.status(201).send(newEmpresa);
+    } catch (error) {
+        res.status(500).send({ message: 'Algum erro inesperado ocorreu ao tentar criar Empresa' });
+        console.error(error);
+    }
+};
+
 module.exports = {
     getAllEmpresas,
-    getEmpresa
+    getEmpresa,
+    createEmpresa
 };

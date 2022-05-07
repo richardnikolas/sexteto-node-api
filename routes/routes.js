@@ -8,13 +8,17 @@ const tituloController = require('../controllers/titulo');
 //* Empresa */
 router.get('/empresas', empresaController.getAllEmpresas);
 router.get('/empresa/:cpfcnpj', empresaController.getEmpresa);
+router.post('/empresa', empresaController.createEmpresa);
 
 //* Devedor */
 router.get('/devedores', devedorController.getAllDevedores);
-router.get('/devedor/::cpfcnpj', devedorController.getDevedor);
+router.get('/devedor/:cpfcnpj', devedorController.getDevedor);
+router.get('/devedores/:cnpjEmpresa', devedorController.getDevedoresEmpresa);
+router.post('/devedor', devedorController.createDevedor);
 
 //* Titulo */
 router.get('/titulos', tituloController.getAllTitulos);
-router.get('/titulos/:cpfcnpj', tituloController.getTitulosPorEmpresa);
+router.get('/titulos/:cpfcnpj', tituloController.getTitulosPorDevedor);
+router.post('/titulo', tituloController.createTitulo);
 
 module.exports = router;

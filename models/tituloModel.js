@@ -23,7 +23,10 @@ const Titulo = sequelize.define('titulo', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    pago: DataTypes.BOOLEAN,
+    pago: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     dataPagamento: DataTypes.STRING
 });
 

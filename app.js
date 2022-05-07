@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-// db stuff
 const { sequelize } = require('./database/db');
 const { initiliazeDb } = require('./database/initializeDb');
 
@@ -12,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const allRoutes = require('./routes/routes');
 
-//* Checking connection database
+//* Checking connection with database
 (async () => {
     try {
         await sequelize.authenticate();
@@ -24,17 +23,12 @@ const allRoutes = require('./routes/routes');
 
 initiliazeDb();
 
-router.post('/devedores', (request, response) => {
-    console.log(request.body);
-    response.sendStatus(200);
-});
-
 // add router in the Express app.
 app.use('/', router);
 app.use(allRoutes);
 
 app.get('/', (req, res) => {
-    res.send(`<h1>Lets Scooby Doo this shit!</h1>`);
+    res.send(`<h1>AFIPIO - Gestão de Recebíveis</h1>`);
 });
 
 app.listen(3000);

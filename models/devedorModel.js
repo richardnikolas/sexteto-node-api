@@ -14,7 +14,10 @@ const Devedor = sequelize.define('devedor', {
     },
     nome: DataTypes.STRING,
     email: DataTypes.STRING,
-    cnpjEmpresa: DataTypes.STRING
+    cnpjEmpresa: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
 });
 
 module.exports = Devedor;
