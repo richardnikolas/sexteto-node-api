@@ -65,9 +65,14 @@ const novaEmpresa = async (req, res) => {
     res.render('empresa/novaEmpresa');
 };
 
+const novaEmpresaSuccess = async (req, res) => {
+    res.render('empresa/novaEmpresaSuccess')
+}
+
 module.exports = {
     getAllEmpresas,
     getEmpresa,
     novaEmpresa,
-    createEmpresa
+    createEmpresa,
+    novaEmpresaSuccess    
 };

@@ -5,6 +5,9 @@ const empresaController = require('../controllers/empresa');
 const devedorController = require('../controllers/devedor');
 const tituloController = require('../controllers/titulo');
 
+//* Index */
+router.get('/', (req, res) =>  res.render('index'));
+
 //* Empresa */
 router.get('/empresas', empresaController.getAllEmpresas);
 router.get('/empresa/:cpfcnpj', empresaController.getEmpresa);
@@ -23,5 +26,6 @@ router.post('/titulo', tituloController.createTitulo);
 
 //* Views */
 router.get('/novaEmpresa', empresaController.novaEmpresa);
+router.get('/novaEmpresaCriada', empresaController.novaEmpresaSuccess);
 
 module.exports = router;

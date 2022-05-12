@@ -31,8 +31,4 @@ initiliazeDb();
 app.use('/', router);
 app.use(allRoutes);
 
-app.get('/', (req, res) => {
-    res.send(`<h1>AFIPIO - Gestão de Recebíveis</h1>`);
-});
-
 app.listen(3000);
