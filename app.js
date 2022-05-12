@@ -5,11 +5,15 @@ const { sequelize } = require('./database/db');
 const { initiliazeDb } = require('./database/initializeDb');
 
 const app = express();
+
+const allRoutes = require('./routes/routes');
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-const allRoutes = require('./routes/routes');
 
 //* Checking connection with database
 (async () => {

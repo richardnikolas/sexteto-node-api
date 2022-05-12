@@ -52,13 +52,22 @@ const createEmpresa = async (req, res) => {
 
         res.status(201).send(newEmpresa);
     } catch (error) {
-        res.status(500).send({ message: 'Algum erro inesperado ocorreu ao tentar criar Empresa' });
+        res.status(500).send({
+            message: error
+        });
         console.error(error);
     }
+};
+
+//* VIEWS *//
+
+const novaEmpresa = async (req, res) => {
+    res.render('empresa/novaEmpresa');
 };
 
 module.exports = {
     getAllEmpresas,
     getEmpresa,
+    novaEmpresa,
     createEmpresa
 };

@@ -21,4 +21,7 @@ router.get('/titulos', tituloController.getAllTitulos);
 router.get('/titulos/:cpfcnpj', tituloController.getTitulosPorDevedor);
 router.post('/titulo', tituloController.createTitulo);
 
+//* Views */
+router.get('/novaEmpresa', empresaController.novaEmpresa);
+
 module.exports = router;

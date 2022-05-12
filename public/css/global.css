@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+
+:root {
+    --dark-gray: #0f1011;
+    --main-purple: #2914a7;
+    --dark-green: #2e8a56;
+    --light-green: #36c172;
+    --error-red: #c70000;
+    --light-red: #e13939;
+    --grey: #9ca2a4;
+    --light-grey: #d4d6d7;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--light-gray);
+}
+
+input:active,
+input:focus,
+input:focus-visible,
+textarea:active,
+textarea:focus,
+textarea:focus-visible {
+    border-color: var(--main-purple) !important;
+    outline: 1px solid var(--main-purple) !important;
+}
