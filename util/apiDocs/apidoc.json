@@ -1,0 +1,22 @@
+{
+    "name": "AFIPIO - API Documentation",
+    "version": "1.0.0",
+    "title": "AFIPIO API Docs",
+    "url" : "https://afipio.com",
+    "input": [
+        "afipioDocs"
+    ],
+    "order": [
+      "Empresa",
+      "Devedor",
+      "Titulo"
+    ],
+    "header": {
+      "title": "Introduction",
+      "filename": "header.md"
+    },
+    "footer": {
+      "title": "Thank you",
+      "filename": "footer.md"
+    }
+  }

@@ -1,0 +1,3 @@
+# Considerações finais.
+
+Não há.
