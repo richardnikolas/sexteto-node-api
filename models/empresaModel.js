@@ -19,7 +19,7 @@ const Empresa = sequelize.define('empresa', {
     },
     nomeRepresentante: DataTypes.STRING,
     emailRepresentante: DataTypes.STRING,
-    mensagemEmail: DataTypes.STRING,
+    mensagemEmail: DataTypes.STRING(1000),
     assuntoEmail: DataTypes.STRING
 });
 

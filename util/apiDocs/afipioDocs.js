@@ -34,3 +34,8 @@
 function getEmpresa() {
     return;
 }
+
+
+function createEmpresa() {
+    return;
+}
