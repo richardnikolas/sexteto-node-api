@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/db');
+const { defaultModelFieldValidation } = require('../util/functions');
 
 const Empresa = sequelize.define('empresa', {
     id: {
@@ -11,7 +12,8 @@ const Empresa = sequelize.define('empresa', {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate: defaultModelFieldValidation('Please provide cpfcnpj')
     },
     nomeEmpresa: {
         type: DataTypes.STRING,
@@ -19,8 +21,16 @@ const Empresa = sequelize.define('empresa', {
     },
     nomeRepresentante: DataTypes.STRING,
     emailRepresentante: DataTypes.STRING,
-    mensagemEmail: DataTypes.STRING(1000),
-    assuntoEmail: DataTypes.STRING
+    mensagemEmail: {
+        type: DataTypes.STRING(1000),
+        allowNull: false,
+        validate: defaultModelFieldValidation('Please provide mensagemEmail')
+    },
+    assuntoEmail: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: defaultModelFieldValidation('Please provide assuntoEmail')
+    }
 });
 
 module.exports = Empresa;

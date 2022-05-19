@@ -41,7 +41,7 @@ const createEmpresa = async (req, res) => {
     } = req.body;
 
     try {
-        const newEmpresa = await Empresa.create({
+        await Empresa.create({
             cpfcnpj,
             nomeEmpresa,
             nomeRepresentante,
@@ -50,7 +50,7 @@ const createEmpresa = async (req, res) => {
             assuntoEmail
         });
 
-        res.status(201).send(newEmpresa);
+        res.status(201).send({ message: 'Empresa criada com sucesso!' });
     } catch (error) {
         res.status(500).send({
             message: error
@@ -66,13 +66,13 @@ const novaEmpresa = async (req, res) => {
 };
 
 const novaEmpresaSuccess = async (req, res) => {
-    res.render('empresa/novaEmpresaSuccess')
-}
+    res.render('empresa/novaEmpresaSuccess');
+};
 
 module.exports = {
     getAllEmpresas,
     getEmpresa,
     novaEmpresa,
     createEmpresa,
-    novaEmpresaSuccess    
+    novaEmpresaSuccess
 };

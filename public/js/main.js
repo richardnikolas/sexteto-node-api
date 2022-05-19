@@ -1,7 +1,6 @@
-
 const redirectToUrl = (url) => {
     window.location.href = url;
-}
+};
 
 const createNewEmpresa = async () => {
     const cnpjValue = document.querySelector('#inputEmpresaCnpj')?.value.replace(/[\/.-]/g, '');
@@ -25,9 +24,15 @@ const createNewEmpresa = async () => {
         body: JSON.stringify(requestBody),
         headers: { 'Content-Type': 'application/json' }
     })
-        .then((res) => { 
-            res.json();
-            redirectToUrl("novaEmpresaCriada");
+        .then(async (res) => {
+            const json = await res.json();
+
+            if (res.ok) {
+                redirectToUrl('novaEmpresaCriada');
+            } else {
+                const firstError = json.message?.errors[0];
+                alert(firstError.message || 'Dados inválidos');
+            }
         })
-        .catch((err) => console.log('err', err))
+        .catch((err) => console.log('err', err));
 };
