@@ -12,11 +12,11 @@
       "Titulo"
     ],
     "header": {
-      "title": "Introduction",
+      "title": "Introdução",
       "filename": "header.md"
     },
     "footer": {
-      "title": "Thank you",
+      "title": "Melhores práticas",
       "filename": "footer.md"
     }
   }
