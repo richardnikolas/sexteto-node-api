@@ -11,7 +11,12 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('afipio', 'rodrigo@afipio', 'afipio@2022', {
     dialect: 'mysql',
     host: 'afipio.mysql.database.azure.com',
-    port: 3306
+    port: 3306,
+    dialectOptions: {
+        ssl: {
+            require: true
+        }
+    }
 });
 
 module.exports = { sequelize };
