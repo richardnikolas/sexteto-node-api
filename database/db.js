@@ -1,8 +1,16 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('afipio', 'root', 'root', {
+//* LOCAL
+// const sequelize = new Sequelize('afipio', 'root', 'root', {
+//     dialect: 'mysql',
+//     host: 'localhost',
+//     port: 3306
+// });
+
+//* HEROKU
+const sequelize = new Sequelize('afipio', 'rodrigo@afipio', 'afipio@2022', {
     dialect: 'mysql',
-    host: 'localhost',
+    host: 'afipio.mysql.database.azure.com',
     port: 3306
 });
 
