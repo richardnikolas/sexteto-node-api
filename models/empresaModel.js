@@ -13,7 +13,7 @@ const Empresa = sequelize.define('empresa', {
         primaryKey: true,
         allowNull: false,
         unique: true,
-        validate: defaultModelFieldValidation('Please provide cpfcnpj')
+        validate: defaultModelFieldValidation('Favor fornecer cpfcnpj')
     },
     nomeEmpresa: {
         type: DataTypes.STRING,
@@ -24,12 +24,12 @@ const Empresa = sequelize.define('empresa', {
     mensagemEmail: {
         type: DataTypes.STRING(1000),
         allowNull: false,
-        validate: defaultModelFieldValidation('Please provide mensagemEmail')
+        validate: defaultModelFieldValidation('Favor fornecer mensagemEmail')
     },
     assuntoEmail: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: defaultModelFieldValidation('Please provide assuntoEmail')
+        validate: defaultModelFieldValidation('Favor fornecer assuntoEmail')
     }
 });
 

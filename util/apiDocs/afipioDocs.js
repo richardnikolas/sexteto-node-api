@@ -41,14 +41,14 @@ function getEmpresa() {
  * @apiGroup Empresa
  * @apiName POST Empresa
  *
- * @apiDescription Neste endpoint é possível criar uma nova empresa
+ * @apiDescription Neste endpoint é possível criar uma nova empresa.
  *
  * @apiBody {String} cpfcnpj CNPJ da nova empresa
  * @apiBody {String} nomeEmpresa Nome da nova empresa
  * @apiBody {String} nomeRepresentante Nome do Representante da empresa
  * @apiBody {String} emailRepresentante Email do Representante da empresa
  * @apiBody {String} assuntoEmail Assunto padrão de todos os emails que serão enviados aos devedores
- * @apiBody {String} mensagemEmail Mensagem padrão de todos os emaisl que serão enviados aos devedores
+ * @apiBody {String} mensagemEmail Mensagem padrão de todos os emails que serão enviados aos devedores
  *
  * @apiSuccessExample {json} Success-Example
  *     HTTP/1.1 201 OK
@@ -57,7 +57,7 @@ function getEmpresa() {
  *     }
  *
  * @apiError (400 Bad Request) BadRequest Verifique os dados de criação da Empresa.
- * @apiError (500 Internal Server Error) InternalServerError The server encountered an internal error.
+ * @apiError (500 Internal Server Error) InternalServerError Erro interno no servidor.
  *
  * @apiErrorExample Response (example):
  *     HTTP/1.1 400 Bad Request
@@ -77,7 +77,7 @@ function createEmpresa() {
  * @apiName GET Devedor
  * @apiParam {String} cpfcnpj <code>cpfcnpj</code> Identificador único do Devedor
  *
- * @apiDescription Neste endpoint é possível obter todas as informações de um devedor
+ * @apiDescription Neste endpoint é possível obter todas as informações de um devedor.
  *
  * @apiSuccessExample {json} Success-Example
  *     HTTP/1.1 200 OK
@@ -91,7 +91,7 @@ function createEmpresa() {
  *     }
  *
  * @apiError (404 Not Found) DevedorNotFound  Nenhum Devedor encontrada com este CPF/CNPJ.
- * @apiError (500 Internal Server Error) InternalServerError The server encountered an internal error.
+ * @apiError (500 Internal Server Error) InternalServerError Erro interno no servidor.
  *
  * @apiErrorExample Response (example):
  *     HTTP/1.1 404 Not Found
@@ -109,7 +109,7 @@ function getDevedor() {
  * @apiName GET Devedor por Empresa
  * @apiParam {String} cnpjEmpresa <code>cnpjEmpresa</code> Identificador único da Empresa
  *
- * @apiDescription Neste endpoint é possível obter todas as informações dos devedores de uma empresa
+ * @apiDescription Neste endpoint é possível obter todas as informações dos devedores de uma empresa.
  *
  * @apiSuccessExample {json} Success-Example
  *     HTTP/1.1 200 OK
@@ -125,7 +125,7 @@ function getDevedor() {
  *     ]
  *
  * @apiError (404 Not Found) DevedorNotFound Nenhum Devedor encontrado para esta Empresa.
- * @apiError (500 Internal Server Error) InternalServerError The server encountered an internal error.
+ * @apiError (500 Internal Server Error) InternalServerError Erro interno no servidor.
  *
  * @apiErrorExample Response (example):
  *     HTTP/1.1 404 Not Found
@@ -142,7 +142,7 @@ function getDevedoresPorEmpresa() {
  * @apiGroup Devedor
  * @apiName POST Devedor
  *
- * @apiDescription Neste endpoint é possível criar um novo devedor
+ * @apiDescription Neste endpoint é possível criar um novo devedor.
  *
  * @apiBody {String} cpfcnpj CPF/CNPJ da novo devedor
  * @apiBody {String} nome Nome do novo devedor
@@ -168,7 +168,7 @@ function createDevedor() {
     return;
 }
 
-//* TITULO
+//* TÍTULO
 
 /**
  * @api {get} /titulos/:cpfcnpj Obter dados dos Titulos de um Devedor
@@ -176,7 +176,7 @@ function createDevedor() {
  * @apiName GET Titulos por Devedor
  * @apiParam {String} cpfcnpj <code>cpfcnpj</code> Identificador único do Devedor
  *
- * @apiDescription Neste endpoint é possível obter todas as informações dos titulos de um devedor
+ * @apiDescription Neste endpoint é possível obter todas as informações dos titulos de um devedor.
  *
  * @apiSuccessExample {json} Success-Example
  *     HTTP/1.1 200 OK
@@ -192,13 +192,13 @@ function createDevedor() {
  *          }
  *     ]
  *
- * @apiError (404 Not Found) DevedorNotFound Nenhum Titulo encontrado para esta Devedor.
+ * @apiError (404 Not Found) DevedorNotFound Nenhum título encontrado para esta Devedor.
  * @apiError (500 Internal Server Error) InternalServerError The server encountered an internal error.
  *
  * @apiErrorExample Response (example):
  *     HTTP/1.1 404 Not Found
  *     {
- *       "message": "Nenhum Titulo encontrado para esta Devedor."
+ *       "message": "Nenhum título encontrado para esta Devedor."
  *     }
  */
 function getTitulosPorDevedor() {
@@ -210,12 +210,12 @@ function getTitulosPorDevedor() {
  * @apiGroup Titulo
  * @apiName POST Titulo
  *
- * @apiDescription Neste endpoint é possível criar um novo titulo
+ * @apiDescription Neste endpoint é possível criar um novo título de cobrança.
  *
- * @apiBody {String} cpfcnpj CPF/CNPJ de quem é o dono deste titulo
- * @apiBody {Number} valor Valor do titulo
- * @apiBody {String} codigoDeBarras Codigo de barras do boleto
- * @apiBody {String} dataVencimento Date de vencimento do boleto
+ * @apiBody {String} cpfcnpj CPF/CNPJ de quem é o dono deste título.
+ * @apiBody {Number} valor Valor do título.
+ * @apiBody {String} codigoDeBarras Código de barras do título.
+ * @apiBody {String} dataVencimento Data de vencimento do título.
  *
  * @apiSuccessExample {json} Success-Example
  *     HTTP/1.1 201 OK
@@ -223,13 +223,13 @@ function getTitulosPorDevedor() {
  *         "message": "Titulo criado com sucesso!"
  *     }
  *
- * @apiError (400 Bad Request) Verifique os dados de criação do Titulo.
- * @apiError (500 Internal Server Error) InternalServerError The server encountered an internal error.
+ * @apiError (400 Bad Request) Verifique os dados de criação do título.
+ * @apiError (500 Internal Server Error) InternalServerError Erro interno no servidor.
  *
  * @apiErrorExample Response (example):
  *     HTTP/1.1 400 Bad Request
  *     {
- *       "message": "Verifique os dados de criação do Titulo."
+ *       "message": "Verifique os dados de criação do título."
  *     }
  */
 function createTitulo() {
