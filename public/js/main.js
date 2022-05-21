@@ -1,4 +1,4 @@
-import { get, post } from "../../util/rest/rest";
+import { get, post } from "../../util/rest";
 
 const redirectToUrl = (url) => {
     window.location.href = url;
