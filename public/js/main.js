@@ -2,7 +2,7 @@ import { get, post } from "../../util/rest/rest";
 
 const redirectToUrl = (url) => {
     window.location.href = url;
-}
+};
 
 const createNewEmpresa = async () => {
     const cnpjValue = document.querySelector('#inputEmpresaCnpj')?.value.replace(/[\/.-]/g, '');
@@ -20,13 +20,16 @@ const createNewEmpresa = async () => {
         mensagemEmail: msgEmailValue,
         assuntoEmail: assuntoValue
     };
-
     post(
         '/empresa', 
         requestBody, 
         (res) => { 
-            res.json();
-            redirectToUrl("novaEmpresaCriada");
+            if (res.ok) {
+                redirectToUrl('novaEmpresaCriada');
+            } else {
+                const firstError = json.message?.errors[0];
+                alert(firstError.message || 'Dados inválidos');
+            }
         },
         (err) => console.log('err', err)
     );

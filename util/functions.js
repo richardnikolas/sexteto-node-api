@@ -1,3 +1,4 @@
+
 const addDays = Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
@@ -21,10 +22,22 @@ const iterateThroughArray = Array.prototype.iterate = function(executable) {
     }
 };
 
+const defaultModelFieldValidation = (message) => {
+    return {
+        notEmpty: {
+            msg: message
+        },
+        notNull: {
+            msg: message
+        }
+    };
+
+}
 
 module.exports = {
     addDays,
     iterateThroughArray,
     formatReais,
-    isToday
+    isToday,
+    defaultModelFieldValidation
 };

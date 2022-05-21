@@ -1,0 +1,9 @@
+{
+    "name": "AFIPIO Gestão de Recebiveis",
+    "description": "Bem vindo a AFIPIO Gestão de Recebíveis",
+    "repository": "https://github.com/richardnikolas/sexteto-node-api",
+    "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
+    "keywords": ["node", "express", "heroku"],
+    "image": "heroku/nodejs"
+  }
+  
