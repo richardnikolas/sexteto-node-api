@@ -1,3 +1,4 @@
+import { get, post } from "../../util/rest/rest";
 
 const redirectToUrl = (url) => {
     window.location.href = url;
@@ -20,14 +21,13 @@ const createNewEmpresa = async () => {
         assuntoEmail: assuntoValue
     };
 
-    await fetch('/empresa', {
-        method: 'POST',
-        body: JSON.stringify(requestBody),
-        headers: { 'Content-Type': 'application/json' }
-    })
-        .then((res) => { 
+    post(
+        '/empresa', 
+        requestBody, 
+        (res) => { 
             res.json();
             redirectToUrl("novaEmpresaCriada");
-        })
-        .catch((err) => console.log('err', err))
+        },
+        (err) => console.log('err', err)
+    );
 };

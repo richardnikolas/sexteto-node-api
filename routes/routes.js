@@ -4,6 +4,7 @@ const router = express.Router();
 const empresaController = require('../controllers/empresa');
 const devedorController = require('../controllers/devedor');
 const tituloController = require('../controllers/titulo');
+const cobrancaService = require('../controllers/cobranca');
 
 //* Index */
 router.get('/', (req, res) =>  res.render('index'));
@@ -23,6 +24,9 @@ router.post('/devedor', devedorController.createDevedor);
 router.get('/titulos', tituloController.getAllTitulos);
 router.get('/titulos/:cpfcnpj', tituloController.getTitulosPorDevedor);
 router.post('/titulo', tituloController.createTitulo);
+
+//* Cobranca */
+router.post('/cobrarEmpresa', cobrancaService.executeCobrancaParaEmpresa);
 
 //* Views */
 router.get('/novaEmpresa', empresaController.novaEmpresa);
