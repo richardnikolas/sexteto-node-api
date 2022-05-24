@@ -2,18 +2,38 @@ const Devedor = require('../models/devedorModel');
 const Titulo = require('../models/tituloModel');
 const MessageService = require('./messageService');
 const DiasAtrasoService = require('./diasAtrasoService');
+const Rest = require('../util/rest');
+
+let emailSenderApiUrl = '';
+let cobrancas = [];
 
 const executeCobrancaEmpresa = async (empresa) => {
+    if(!empresa) return;
+
     const devedores = await Devedor.findAll({
         where: { cnpjEmpresa: empresa.cpfcnpj }
     });
 
+    if(!devedores || devedores.length <=0) return;
+
+    cobrancas = [];
+
     devedores.forEach(devedor => {
-        executeCobrancaDevedor(empresa, devedor); 
+        generateCobrancaDevedor(empresa, devedor); 
     });
+
+    if(!cobrancas || cobrancas.length <=0) return;
+
+    console.log(`Enviando ${cobrancas.length} cobranças...`);
+    Rest.post(
+        emailSenderApiUrl, 
+        message,
+        (_) => console.log(`${cobrancas.length} cobranças enviadas com sucesso!`),
+        (erro) => console.log(`>>>Erro: \n\n ${erro} \n\n ao enviar as cobranças: ${cobrancas}`)
+    )
 }
 
-const executeCobrancaDevedor = (empresa, devedor) => {
+const generateCobrancaDevedor = (empresa, devedor) => {
     const titulos = await Titulo.findAll({
         where: { cpfcnpj: devedor.cpfcnpj }
     });
@@ -23,13 +43,14 @@ const executeCobrancaDevedor = (empresa, devedor) => {
     titulos.forEach(titulo => {
         let dataCobranca = getDataCobranca(titulo, mediaDiasAtraso);
         if(isToday(dataCobranca))
-            executeCobrancaTitulo(empresa, devedor, titulo);
+            generateCobrancaTitulo(empresa, devedor, titulo);
     });
 }
 
-const executeCobrancaTitulo = (empresa, devedor, titulo) => {
-    let messageText = MessageService.composeMessage(empresa, devedor, titulo);
-    //TODO: Cobrança aqui
+const generateCobrancaTitulo = (empresa, devedor, titulo) => {
+    cobrancas.push({
+        message: MessageService.composeMessage(empresa, devedor, titulo)
+    });
 }
 
 const getDataCobranca = (titulo, mediaDiasAtraso) => {
