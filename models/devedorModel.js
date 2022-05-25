@@ -17,10 +17,6 @@ const Devedor = sequelize.define('devedor', {
     cnpjEmpresa: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    mediaDiasAtraso: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
     }
 });
 

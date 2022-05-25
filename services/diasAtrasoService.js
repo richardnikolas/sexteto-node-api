@@ -3,8 +3,9 @@ const sumArray = (array) => {
 }
 
 const calcularMediaDiasAtraso = (titulos) => {
-    let valores = titulos.map(t=>t.valor);
+    let valores = titulos.map(t => t.valor);
     let somaValores = sumArray(valores);
+    
     return Math.ceil(somaValores / valores);
 }
 
