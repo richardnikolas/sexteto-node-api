@@ -17,7 +17,10 @@ const remetente = nodemailer.createTransport({
 const sendMail = (message) => {
     console.log(message);
     var messageJson = {
-        from: sender,
+        from: {
+            name: 'AFIPIO Recebíveis',
+            address: sender
+        },
         to: message.email,
         subject: 'Alerta simulado de vencimento de fatura',
         text: message.messageText
