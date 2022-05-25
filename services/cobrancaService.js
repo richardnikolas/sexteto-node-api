@@ -18,14 +18,14 @@ const executeCobrancaEmpresa = async (empresa) => {
 
     cobrancas = [];
 
-    devedores.forEach(devedor => {
-        generateCobrancaDevedor(empresa, devedor); 
-    });
+    for (let i = 0; i < devedores.length; i++) {
+        await generateCobrancaDevedor(empresa, devedores[i]);
+    }
 
     if(!cobrancas || cobrancas.length <=0) return;
 
     console.log(`Enviando ${cobrancas.length} cobranças...`);
-    Rest.post(
+    await Rest.post(
         emailSenderApiUrl, 
         message,
         (_) => console.log(`${cobrancas.length} cobranças enviadas com sucesso!`),
@@ -33,21 +33,21 @@ const executeCobrancaEmpresa = async (empresa) => {
     )
 }
 
-const generateCobrancaDevedor = (empresa, devedor) => {
+const generateCobrancaDevedor = async (empresa, devedor) => {
     const titulos = await Titulo.findAll({
         where: { cpfcnpj: devedor.cpfcnpj }
     });
 
     let mediaDiasAtraso = DiasAtrasoService.calcularMediaDiasAtraso(devedor, titulos);
 
-    titulos.forEach(titulo => {
-        let dataCobranca = getDataCobranca(titulo, mediaDiasAtraso);
+    for (let i = 0; i < titulos.length; i++) {
+        let dataCobranca = getDataCobranca(titulos[i], mediaDiasAtraso);
         if(isToday(dataCobranca))
-            generateCobrancaTitulo(empresa, devedor, titulo);
-    });
+            await generateCobrancaTitulo(empresa, devedor, titulos[i]);
+    }
 }
 
-const generateCobrancaTitulo = (empresa, devedor, titulo) => {
+const generateCobrancaTitulo = async (empresa, devedor, titulo) => {
     cobrancas.push({
         messageText: MessageService.composeMessage(empresa, devedor, titulo),
         email: devedor.email

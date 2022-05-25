@@ -5,8 +5,9 @@ const password = 'afipio2022';
 
 const remetente = nodemailer.createTransport({
     host: 'smtp.gmail.com',
+    service: 'smtp.gmail.com',
     port: 587,
-    secure: true,
+    secure: false,
     auth:{
         user: sender,
         pass: password
@@ -14,6 +15,7 @@ const remetente = nodemailer.createTransport({
 });
 
 const sendMail = (message) => {
+    console.log(message);
     var messageJson = {
         from: sender,
         to: message.email,
@@ -27,7 +29,7 @@ const sendMail = (message) => {
 }
 
 
-
+module.exports = { sendMail };
 
 
 

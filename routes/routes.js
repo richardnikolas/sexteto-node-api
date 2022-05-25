@@ -27,6 +27,7 @@ router.post('/titulo', tituloController.createTitulo);
 
 //* Cobranca */
 router.post('/cobrarEmpresa', cobrancaService.executeCobrancaParaEmpresa);
+router.post('/enviarEmail', cobrancaService.sendEmail);
 
 //* Views */
 router.get('/novaEmpresa', empresaController.novaEmpresa);

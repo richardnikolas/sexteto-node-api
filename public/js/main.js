@@ -20,7 +20,7 @@ const createNewEmpresa = async () => {
         mensagemEmail: msgEmailValue,
         assuntoEmail: assuntoValue
     };
-    post(
+    await post(
         '/empresa', 
         requestBody, 
         (res) => { 

@@ -1,4 +1,4 @@
-const post = (url, data, successCallback, errorCallback) =>  {
+const post = async (url, data, successCallback, errorCallback) =>  {
     await fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -8,7 +8,7 @@ const post = (url, data, successCallback, errorCallback) =>  {
         .catch(errorCallback)
 };
 
-const get = (url, successCallback, errorCallback) =>  {
+const get = async (url, successCallback, errorCallback) =>  {
     await fetch(url, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
