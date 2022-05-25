@@ -49,7 +49,8 @@ const generateCobrancaDevedor = (empresa, devedor) => {
 
 const generateCobrancaTitulo = (empresa, devedor, titulo) => {
     cobrancas.push({
-        message: MessageService.composeMessage(empresa, devedor, titulo)
+        messageText: MessageService.composeMessage(empresa, devedor, titulo),
+        email: devedor.email
     });
 }
 
