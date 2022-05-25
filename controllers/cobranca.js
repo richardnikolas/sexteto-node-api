@@ -5,11 +5,11 @@ const SendMailService = require('../services/sendMailService');
 const executeCobrancaParaEmpresa = async (req, res) => {
     
     try {
-        const { cpfcnpj } = req.body;
+        const { cpfcnpj, useApi } = req.body;
         const empresa = await Empresa.findOne({
             where: { cpfcnpj: cpfcnpj }
         });
-        await CobrancaSerice.executeCobrancaEmpresa(empresa);
+        await CobrancaSerice.executeCobrancaEmpresa(empresa, useApi);
         res.status(201).send('Cobranca Realizada');
     } catch (error) {
         res.status(500).send({

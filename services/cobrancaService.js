@@ -3,34 +3,23 @@ const Titulo = require('../models/tituloModel');
 const MessageService = require('./messageService');
 const DiasAtrasoService = require('./diasAtrasoService');
 const Rest = require('../util/rest');
+const MailSenderService = require('../services/sendMailService');
 
-let emailSenderApiUrl = '';
-let cobrancas = [];
+let emailSenderApiUrl = 'https://9rbh4zcl6h.execute-api.us-east-1.amazonaws.com/dev/testses';
+let UseApi = false;
 
-const executeCobrancaEmpresa = async (empresa) => {
+const executeCobrancaEmpresa = async (empresa, useApi = false) => {
     if(!empresa) return;
+    UseApi = useApi;
 
     const devedores = await Devedor.findAll({
         where: { cnpjEmpresa: empresa.cpfcnpj }
     });
-
-    if(!devedores || devedores.length <=0) return;
-
-    cobrancas = [];
+    if(!devedores || devedores.length <= 0) return;
 
     for (let i = 0; i < devedores.length; i++) {
         await generateCobrancaDevedor(empresa, devedores[i]);
     }
-
-    if(!cobrancas || cobrancas.length <=0) return;
-
-    console.log(`Enviando ${cobrancas.length} cobranças...`);
-    await Rest.post(
-        emailSenderApiUrl, 
-        message,
-        (_) => console.log(`${cobrancas.length} cobranças enviadas com sucesso!`),
-        (erro) => console.log(`>>>Erro: \n\n ${erro} \n\n ao enviar as cobranças: ${cobrancas}`)
-    )
 }
 
 const generateCobrancaDevedor = async (empresa, devedor) => {
@@ -48,10 +37,27 @@ const generateCobrancaDevedor = async (empresa, devedor) => {
 }
 
 const generateCobrancaTitulo = async (empresa, devedor, titulo) => {
-    cobrancas.push({
-        messageText: MessageService.composeMessage(empresa, devedor, titulo),
-        email: devedor.email
-    });
+    console.log(`Enviando cobrança para ${devedor.nome} ...`);
+    let cobranca = {
+        email: devedor.email,
+        nome: devedor.nome,
+        msg: MessageService.composeMessage(empresa, devedor, titulo),
+        assunto: 'Alerta simulado de vencimento de fatura'
+    }
+    if(UseApi){
+        await sendCobrancaApi(cobranca);  
+        return;
+    }
+    MailSenderService.sendMail(cobranca);
+}
+
+const sendCobrancaApi = async (cobranca) => {
+    await Rest.post(
+        emailSenderApiUrl,
+        cobranca,
+        (_) => console.log(`Cobranças para ${cobranca.nome} enviada com sucesso!`),
+        (erro) => console.log(`>>>Erro: \n\n ${erro} \n\n ao enviar a cobrança para ${cobranca.nome}`)
+    );
 }
 
 const getDataCobranca = (titulo, mediaDiasAtraso) => {

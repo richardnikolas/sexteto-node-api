@@ -18,12 +18,12 @@ const sendMail = (message) => {
     console.log(message);
     var messageJson = {
         from: {
-            name: 'AFIPIO Recebíveis',
+            name: message.nome,
             address: sender
         },
         to: message.email,
-        subject: 'Alerta simulado de vencimento de fatura',
-        text: message.messageText
+        subject: message.assunto,
+        text: message.msg
     };
     remetente.sendMail(
         messageJson,
