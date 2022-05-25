@@ -9,7 +9,7 @@ const executeCobrancaParaEmpresa = async (req, res) => {
         console.log("req.body", req.body);
 
         const empresa = await Empresa.findOne({
-            where: { cpfcnpj: cpfcnpj }
+            where: { cpfcnpj: cpfcnpj.replace(/[\/.-]/g, '') }
         });
 
         await CobrancaSerice.executeCobrancaEmpresa(empresa, useApi);

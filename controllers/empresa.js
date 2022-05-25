@@ -42,7 +42,7 @@ const createEmpresa = async (req, res) => {
 
     try {
         await Empresa.create({
-            cpfcnpj,
+            cpfcnpj: cpfcnpj.replace(/[\/.-]/g, ''),
             nomeEmpresa,
             nomeRepresentante,
             emailRepresentante,

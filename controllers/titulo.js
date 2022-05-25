@@ -36,8 +36,13 @@ const createTitulo = async (req, res) => {
     const { cpfcnpj, valor, codigoDeBarras, dataVencimento } = req.body;
 
     try {
+        if(!isIsoDate(dataVencimento)){
+            res.status(500).send({ message: `Formato de Data de vencimento "${dataVencimento}" inválido!` });
+            return;
+        }
+
         const newTitulo = await Titulo.create({
-            cpfcnpj,
+            cpfcnpj: cpfcnpj.replace(/[\/.-]/g, ''),
             valor,
             codigoDeBarras,
             dataVencimento
@@ -49,6 +54,12 @@ const createTitulo = async (req, res) => {
         console.error(error);
     }
 };
+
+function isIsoDate(str) {
+    if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(str)) return false;
+    var d = new Date(str); 
+    return d.toISOString()===str;
+}
 
 module.exports = {
     getAllTitulos,

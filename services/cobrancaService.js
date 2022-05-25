@@ -35,7 +35,7 @@ const generateCobrancaDevedor = async (empresa, devedor) => {
 
     console.log("titulos", titulos);
 
-    // let mediaDiasAtraso = DiasAtrasoService.calcularMediaDiasAtraso(titulos);
+    let mediaDiasAtraso = DiasAtrasoService.calcularMediaDiasAtraso(titulos);
 
     for (let i = 0; i < titulos.length; i++) {
         console.log("titulo", titulos[i]);
@@ -53,7 +53,8 @@ const generateCobrancaTitulo = async (empresa, devedor, titulo) => {
         email: devedor.email,
         nome: devedor.nome,
         msg: MessageService.composeMessage(empresa, devedor, titulo),
-        assunto: 'Alerta simulado de vencimento de fatura'
+        assunto: 'Alerta simulado de vencimento de fatura',
+        nome_empresa: 'AFIPIO'
     }
 
     if (UseApi){

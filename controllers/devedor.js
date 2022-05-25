@@ -51,7 +51,7 @@ const createDevedor = async (req, res) => {
 
     try {
         const newDevedor = await Devedor.create({
-            cpfcnpj,
+            cpfcnpj: cpfcnpj.replace(/[\/.-]/g, ''),
             nome,
             email,
             cnpjEmpresa
