@@ -37,6 +37,8 @@ const generateCobrancaDevedor = async (empresa, devedor) => {
 
     let mediaDiasAtraso = DiasAtrasoService.calcularMediaDiasAtraso(titulos);
 
+    console.log("mediaDiasAtraso", mediaDiasAtraso);
+    
     for (let i = 0; i < titulos.length; i++) {
         console.log("titulo", titulos[i]);
         // let dataCobranca = getDataCobranca(titulos[i], mediaDiasAtraso);
