@@ -6,6 +6,7 @@ const Rest = require('../util/rest');
 const MailSenderService = require('../services/sendMailService');
 
 let emailSenderApiUrl = 'https://9rbh4zcl6h.execute-api.us-east-1.amazonaws.com/dev/testses';
+// let emailSenderApiUrl = 'http://localhost:3000/enviarEmail';
 let UseApi = false;
 
 const executeCobrancaEmpresa = async (empresa, useApi = false) => {
@@ -59,7 +60,12 @@ const generateCobrancaTitulo = async (empresa, devedor, titulo) => {
         nome_empresa: 'AFIPIO'
     }
 
-    if (UseApi){
+    if (UseApi) {
+        console.log("cobranca", cobranca);
+
+        cobranca.msg = cobranca.msg.replace(/\n/g, "<br>");
+        console.log("cobranca", cobranca);
+        
         await sendCobrancaApi(cobranca);  
         return;
     }

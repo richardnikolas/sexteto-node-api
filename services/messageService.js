@@ -14,6 +14,7 @@ const composeMessage = (empresa, devedor, titulo) => {
     textoMensagem = textoMensagem.replace(NUMERO_TITULO, titulo.codigoDeBarras);
     textoMensagem = textoMensagem.replace(VALOR_TITULO, formatReais(titulo.valor));
     textoMensagem = textoMensagem.replace(DATA_VENCIMENTO_TITULO, titulo.dataVencimento);
+
     return textoMensagem;
 }
 
